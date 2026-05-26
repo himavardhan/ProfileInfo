@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Himavardhan Reddy Donuru – Senior Web Developer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f7fc;
+      --surface: #ffffff;
+      --surface2: #eef1fa;
+      --accent: #4f46e5;
+      --accent2: #0891b2;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dde3f0;
+      --tag-bg: #eef1fa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(245,247,252,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 2rem;
+    }
+    nav .logo {
+      font-weight: 700; font-size: 1.1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav a { color: var(--muted); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: auto;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,70,229,.12) 0%, transparent 70%);
+      padding: 5rem 2rem 3rem;
+    }
+    .hero-inner {
+      max-width: 960px; width: 100%;
+      display: flex; align-items: center; gap: 3.5rem;
+    }
+    .hero-image-wrap {
+      flex-shrink: 0;
+    }
+    .hero-image-wrap img {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 0 8px rgba(79,70,229,.12), 0 8px 32px rgba(79,70,229,.18);
+    }
+    .hero-text { text-align: left; }
+    @media (max-width: 700px) {
+      .hero-inner { flex-direction: column; text-align: center; }
+      .hero-text { text-align: center; }
+    }
+    .badge {
+      display: inline-block;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--accent2); font-size: .78rem; letter-spacing: .08em;
+      text-transform: uppercase; border-radius: 20px; padding: .35rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800; line-height: 1.15;
+      background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: .75rem;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem; color: var(--muted); margin-bottom: 1.25rem;
+    }
+    .hero-quote {
+      display: flex; align-items: flex-start; gap: .75rem;
+      background: var(--surface2); border-left: 3px solid var(--accent);
+      border-radius: 8px; padding: .85rem 1.1rem;
+      margin-bottom: 1.75rem; max-width: 560px;
+    }
+    .hero-quote .quote-icon {
+      font-size: 1.4rem; line-height: 1; color: var(--accent); flex-shrink: 0;
+    }
+    .hero-quote p {
+      font-size: .88rem; color: var(--muted); font-style: italic; line-height: 1.6;
+    }
+    .hero-quote p strong { color: var(--accent2); font-style: normal; }
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      margin-bottom: 2.5rem;
+    }
+    .contact-row a {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      padding: .5rem 1rem; font-size: .875rem; transition: border-color .2s, transform .2s;
+    }
+    .contact-row a:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .icon { width: 16px; height: 16px; fill: var(--accent); flex-shrink: 0; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; max-width: 1060px; margin: 0 auto; }
+    #summary { padding-top: 0; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+      font-size: 1.75rem; font-weight: 700;
+    }
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+    .section-num {
+      font-size: .82rem; color: var(--accent); font-weight: 600; letter-spacing: .06em;
+    }
+
+    /* ── SUMMARY CARD ── */
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px; padding: 2rem;
+      font-size: 1rem; color: var(--muted); line-height: 1.8;
+    }
+    .summary-card strong { color: var(--text); }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    .highlight-item {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem 1.5rem;
+      font-size: .9rem; color: var(--muted);
+      position: relative; padding-left: 2.5rem;
+    }
+    .highlight-item::before {
+      content: '▹';
+      position: absolute; left: 1rem; color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-group {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .skill-group h3 {
+      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 1rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      background: var(--tag-bg); border: 1px solid var(--border);
+      color: var(--text); font-size: .78rem; border-radius: 6px;
+      padding: .3rem .7rem;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 3rem; }
+    .tl-dot {
+      position: absolute; left: -2.5rem; top: .4rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(79,70,229,.2);
+    }
+    .tl-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem 2rem;
+    }
+    .tl-card:hover { border-color: var(--accent); transition: border-color .3s; }
+    .tl-meta {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: flex-start; gap: .5rem; margin-bottom: .5rem;
+    }
+    .tl-role { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .tl-period {
+      font-size: .8rem; color: var(--accent2); background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 20px; padding: .25rem .75rem;
+    }
+    .tl-employer { font-size: .9rem; color: var(--accent); margin-bottom: .25rem; }
+    .tl-client { font-size: .85rem; color: var(--muted); margin-bottom: 1rem; }
+    .tl-desc { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+    .tl-bullets { list-style: none; padding: 0; }
+    .tl-bullets li {
+      font-size: .875rem; color: var(--muted);
+      padding: .3rem 0 .3rem 1.25rem; position: relative;
+    }
+    .tl-bullets li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--accent);
+    }
+    .tl-skills { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+    .tl-skill-tag {
+      background: rgba(79,70,229,.1); color: var(--accent);
+      border: 1px solid rgba(79,70,229,.25);
+      font-size: .75rem; border-radius: 4px; padding: .2rem .55rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; border-top: 3px solid var(--accent);
+    }
+    .edu-card .degree { font-weight: 700; font-size: 1rem; margin-bottom: .3rem; }
+    .edu-card .inst { color: var(--accent2); font-size: .9rem; margin-bottom: .25rem; }
+    .edu-card .period { color: var(--muted); font-size: .82rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2.5rem 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav ul { gap: .85rem; }
+      .tl-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────── -->
+<nav>
+  <span class="logo">HRD</span>
+  <ul>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-image-wrap">
+      <img src="https://avatars.githubusercontent.com/u/9759460?v=4" alt="Himavardhan Reddy Donuru" />
+    </div>
+    <div class="hero-text">
+    <span class="badge">10+ Years of Experience</span>
+    <h1>Himavardhan Reddy Donuru</h1>
+    <p class="hero-subtitle">Senior Web Developer &amp; UI Lead. </p>
+
+    <div class="hero-quote">
+      <span class="quote-icon">&#10077;</span>
+      <p>Great software isn't written by one brilliant mind — it's <strong>crafted by teams who listen, iterate, and ship with purpose.</strong> I build interfaces that users love and architectures that teams can grow with.
+      <span class="quote-icon">&#10078;</span> </p>
+      
+    </div>
+
+    <div class="contact-row">
+      <a href="tel:+18599821094">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +1-859-982-1094
+      </a>
+      <a href="mailto:himavardhan.d@gmail.com">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        himavardhan.d@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/himavardhan-reddy-donuru-b192ba92" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUMMARY ────────────────────────────────── -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Professional Summary</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="summary-card">
+    <strong>10+ years</strong> of experience developing web applications using
+    <strong>ReactJS, Angular, Vue.js, TypeScript, Node.js, Java Spring Boot</strong>, and modern tooling.
+    Proven track record leading UI teams, architecting Micro Frontend systems, and bridging UX design with
+    scalable engineering across enterprise-grade B2B &amp; B2C platforms in Telecom, Insurance, and E-Commerce domains.
+  </div>
+
+  <div class="highlights">
+    <div class="highlight-item">Led UI team and Micro Frontend architecture for Verizon's Enterprise Vendor Portal</div>
+    <div class="highlight-item">Architected type-safe global state with Redux Toolkit and strict TypeScript interfaces</div>
+    <div class="highlight-item">Built scalable Angular apps from v6 to v18 with Signals, reactive forms, and CDK</div>
+    <div class="highlight-item">Integrated GraphQL + Apollo Client across MFE and enterprise React applications</div>
+    <div class="highlight-item">Performance-optimized React apps via memoization, lazy loading, and Webpack tuning</div>
+    <div class="highlight-item">Integrated Generative AI features using LangChain/OpenAI into production apps</div>
+    <div class="highlight-item">Containerized apps with Docker; CI/CD pipelines using Jenkins and AWS</div>
+    <div class="highlight-item">Mentored junior developers; ran agile ceremonies – standups, grooming, retrospectives</div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────── -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Frontend Frameworks</h3>
+      <div class="tags">
+        <span class="tag">React JS 18/19</span>
+        <span class="tag">Angular v6–v18</span>
+        <span class="tag">Vue.js 3</span>
+        <span class="tag">Redux Toolkit</span>
+        <span class="tag">Pinia</span>
+        <span class="tag">Apollo Client</span>
+        <span class="tag">TanStack Query</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span class="tag">TypeScript</span>
+        <span class="tag">JavaScript (ES6+)</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3 / SCSS</span>
+        <span class="tag">Java</span>
+        <span class="tag">SQL / PL-SQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Backend &amp; APIs</h3>
+      <div class="tags">
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">GraphQL</span>
+        <span class="tag">Axios</span>
+        <span class="tag">Mongoose</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>UI &amp; Styling</h3>
+      <div class="tags">
+        <span class="tag">Bootstrap</span>
+        <span class="tag">Material UI</span>
+        <span class="tag">PrimeNG</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Storybook</span>
+        <span class="tag">Flexbox / Grid</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Testing &amp; Tooling</h3>
+      <div class="tags">
+        <span class="tag">Jasmine / Karma</span>
+        <span class="tag">Jest</span>
+        <span class="tag">Webpack</span>
+        <span class="tag">Vite</span>
+        <span class="tag">NPM</span>
+        <span class="tag">Angular CLI</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>DevOps &amp; Cloud</h3>
+      <div class="tags">
+        <span class="tag">Docker</span>
+        <span class="tag">Jenkins</span>
+        <span class="tag">AWS (EC2, S3, ALB)</span>
+        <span class="tag">Azure DevOps</span>
+        <span class="tag">GitHub / GitLab</span>
+        <span class="tag">BitBucket</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>AI &amp; Emerging</h3>
+      <div class="tags">
+        <span class="tag">LangChain</span>
+        <span class="tag">OpenAI APIs</span>
+        <span class="tag">GitHub Copilot</span>
+        <span class="tag">Micro-Frontends</span>
+        <span class="tag">Angular Signals</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Database &amp; Other</h3>
+      <div class="tags">
+        <span class="tag">Oracle SQL Developer</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">JPA / Hibernate</span>
+        <span class="tag">Spring MVC</span>
+        <span class="tag">EJS</span>
+        <span class="tag">jQuery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ─────────────────────────────── -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Professional Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- ── Adifice / Verizon (current) ── -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-role">Senior Software Engineer &amp; UI Tech Lead</span>
+          <span class="tl-period">April 2021 – Present</span>
+        </div>
+        <div class="tl-employer">Adifice LLC, Chicago, IL</div>
+        <div class="tl-client">Client: Verizon (WBNV) via Infosys &nbsp;|&nbsp; Jan 2025 – Present</div>
+        <p class="tl-desc">
+          Lead developer on the <strong>Verizon Enterprise Vendor Portal</strong> — a B2B application used by vendors, contractors, field engineers, and service providers. Responsible for fiber optics infrastructure management, work order processing, maintenance tracking, and communication workflows.
+        </p>
+        <ul class="tl-bullets">
+          <li>Designed scalable Vendor Portal with Micro Frontend (MFE) architecture enabling independent deployment of 6+ feature modules</li>
+          <li>Built and owned end-to-end vendor onboarding, invoice management, and tracking modules as independently deployable MFEs using React</li>
+          <li>Implemented shared component library &amp; design system consumed across all micro frontends</li>
+          <li>Integrated Apollo Client across MFEs to consume a centralised GraphQL API, eliminating over-fetching via fine-grained queries and real-time subscriptions</li>
+          <li>Used TanStack Query for server-state management, caching, optimistic updates, and background synchronisation</li>
+          <li>Handled multipart file uploads (Invoice PDFs, vendor docs) via Axios while managing relational data through GraphQL mutations</li>
+          <li>Established and maintained shared design system aligned with Verizon brand guidelines</li>
+          <li>Mentored junior developers through 1:1s, code reviews, and design critique sessions</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-tag">React MFE</span>
+          <span class="tl-skill-tag">GraphQL</span>
+          <span class="tl-skill-tag">Apollo Client</span>
+          <span class="tl-skill-tag">TanStack Query</span>
+          <span class="tl-skill-tag">TypeScript</span>
+          <span class="tl-skill-tag">Axios</span>
+          <span class="tl-skill-tag">Spring Boot</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Charter / Spectrum ── -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-role">Senior Web Developer</span>
+          <span class="tl-period">Mar 2024 – Jan 2025</span>
+        </div>
+        <div class="tl-employer">Adifice LLC, Chicago, IL</div>
+        <div class="tl-client">Client: Charter Communications (Spectrum Mobile – Telus)</div>
+        <p class="tl-desc">
+          Developed the <strong>Spectrum Mobile Agent Portal</strong> — a web application enabling Telesales and In-Store agents to place and manage mobile orders on behalf of customers, streamlining workflows and reducing manual errors.
+        </p>
+        <ul class="tl-bullets">
+          <li>Architected role-based workflows using Angular Route Guards (CanActivate) and lazy-loaded feature modules</li>
+          <li>Implemented Reactive Forms with dynamic controls, custom validators, and real-time field-level validation</li>
+          <li>Leveraged RxJS operators (switchMap, debounceTime, catchError) for async customer lookups and order-status streams</li>
+          <li>Optimised performance using OnPush Change Detection, trackBy, and lazy loading</li>
+          <li>Led migration from Angular 12 to Angular 18 via incremental version upgrades</li>
+          <li>Adopted Angular 14 Standalone Components API, reducing module boilerplate across the portal</li>
+          <li>Wrote unit/integration tests with Jasmine and Karma achieving high coverage on critical workflows</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-tag">Angular 12–18</span>
+          <span class="tl-skill-tag">RxJS</span>
+          <span class="tl-skill-tag">Reactive Forms</span>
+          <span class="tl-skill-tag">Angular CDK</span>
+          <span class="tl-skill-tag">TypeScript</span>
+          <span class="tl-skill-tag">Jasmine/Karma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Verizon WBNV (earlier) ── -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-role">Web Developer – UI Tech Lead</span>
+          <span class="tl-period">April 2021 – Mar 2024</span>
+        </div>
+        <div class="tl-employer">Adifice LLC, Chicago, IL</div>
+        <div class="tl-client">Client: Verizon (WBNV) via Infosys</div>
+        <p class="tl-desc">
+          Lead developer for a full-scale internal React application streamlining field operations across Verizon's technician and management workforce — including a real-time ticket assignment system.
+        </p>
+        <ul class="tl-bullets">
+          <li>Built reusable React component library for ticket cards, status badges, and notification banners</li>
+          <li>Managed complex application state using Redux / Context API for real-time cross-role sync</li>
+          <li>Implemented role-based protected routes to enforce manager vs. technician access control</li>
+          <li>Developed dynamic data tables with sort/filter capabilities across multiple dimensions</li>
+          <li>Applied React.lazy() and Suspense for code splitting, improving initial load performance</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-tag">React JS</span>
+          <span class="tl-skill-tag">Redux</span>
+          <span class="tl-skill-tag">React Router</span>
+          <span class="tl-skill-tag">Axios</span>
+          <span class="tl-skill-tag">TypeScript</span>
+          <span class="tl-skill-tag">HTML5/CSS3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Magista / Swiss Re ── -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-role">Senior Frontend Developer</span>
+          <span class="tl-period">May 2018 – April 2021</span>
+        </div>
+        <div class="tl-employer">Magista Inc, Spring, TX</div>
+        <div class="tl-client">Client: Swiss Re (Capgemini) – Kansas City</div>
+        <p class="tl-desc">
+          Developed a large-scale International Property &amp; Casualty (P&amp;C) Insurance platform for Swiss Re — a B2B application serving enterprise-level organisations globally, built with Angular 8–11.
+        </p>
+        <ul class="tl-bullets">
+          <li>Designed dynamic, responsive pages using Angular 8–11, SCSS, Bootstrap, and Flexbox Grid</li>
+          <li>Created Core and Shared modules following single responsibility principle</li>
+          <li>Used PrimeNG and Ag-Grid components; defined custom pipes, directives, and filters</li>
+          <li>Implemented Angular Route Guards and RESTful API integration via HttpClient</li>
+          <li>Performed unit testing with Jest and Jasmine; drove upgrade from Angular 10 to 11</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-tag">Angular 8–11</span>
+          <span class="tl-skill-tag">TypeScript</span>
+          <span class="tl-skill-tag">SCSS</span>
+          <span class="tl-skill-tag">PrimeNG</span>
+          <span class="tl-skill-tag">Ag-Grid</span>
+          <span class="tl-skill-tag">Azure DevOps</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── eWall ── -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-role">UI Developer</span>
+          <span class="tl-period">May 2014 – Dec 2015</span>
+        </div>
+        <div class="tl-employer">Ewall Solutions, Chennai, India</div>
+        <p class="tl-desc">
+          Developed large-scale B2C E-Commerce platforms using the Magento framework, delivering high-performance storefronts with complex product catalogs, payment integrations, and order management systems.
+        </p>
+        <ul class="tl-bullets">
+          <li>Built dynamic, multi-browser compatible UI views with HTML, CSS, JavaScript, jQuery, and Bootstrap</li>
+          <li>Developed E-Commerce web applications using Magento MVC framework</li>
+          <li>Implemented Responsive Web Design using CSS Media Queries</li>
+          <li>Integrated UI components with RESTful web services using JSON</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-tag">HTML/CSS</span>
+          <span class="tl-skill-tag">JavaScript</span>
+          <span class="tl-skill-tag">jQuery</span>
+          <span class="tl-skill-tag">Magento</span>
+          <span class="tl-skill-tag">Bootstrap</span>
+          <span class="tl-skill-tag">AJAX</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────── -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="degree">Master's in Information System Security</div>
+      <div class="inst">University of the Cumberlands, Kentucky</div>
+      <div class="period">Jan 2016 – Aug 2017</div>
+    </div>
+    <div class="edu-card">
+      <div class="degree">B.Tech in Information Technology</div>
+      <div class="inst">JNUT, Hyderabad</div>
+      <div class="period">2008 – 2012</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer>
+  <p>
+    &copy; 2026 Himavardhan Reddy Donuru &nbsp;·&nbsp;
+    <a href="mailto:himavardhan.d@gmail.com">himavardhan.d@gmail.com</a> &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/himavardhan-reddy-donuru-b192ba92" target="_blank" rel="noopener">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>
